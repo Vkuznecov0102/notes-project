@@ -3,6 +3,7 @@ package ru.t1.dao;
 import ru.t1.domains.Note;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 public interface NoteDao {
@@ -17,7 +18,10 @@ public interface NoteDao {
 
     List<Note> searchContent(String text);
 
+    List<Note> searchByDate(Date creationDate);
+
     void saveToFile(Note note, String fileName) throws IOException;
+
 
 //    List<Note> findAll();
 }

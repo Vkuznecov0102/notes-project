@@ -6,6 +6,7 @@ import ru.t1.dao.NoteDao;
 import ru.t1.domains.Note;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -37,6 +38,11 @@ public class NoteServiceImpl implements NoteService {
     @Override
     public List<Note> searchContent(String text) {
         return noteDAO.searchContent(text);
+    }
+
+    @Override
+    public List<Note> searchByDate(Date creationDate) {
+        return noteDAO.searchByDate(creationDate);
     }
 
     @Override

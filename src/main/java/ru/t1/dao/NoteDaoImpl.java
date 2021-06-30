@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +24,7 @@ public class NoteDaoImpl implements NoteDao {
 
     @Override
     public Note getNoteById(long id) {
-        String getByIdQuery = "select id,text,creationDate,hashtags,header where id=:'" + id + "'";
+        String getByIdQuery = "select id,text,creationDate,hashtags,header from note where id=:'" + id + "'";
         return namedParameterJdbcOperations.queryForObject(getByIdQuery, Map.of("id", id), Note.class);
     }
 
@@ -50,6 +51,12 @@ public class NoteDaoImpl implements NoteDao {
     @Override
     public List<Note> searchContent(String text) {
         String searchQuery = "select id,text,creationDate,hashtags,header from note where text like '" + text + "'";
+        return namedParameterJdbcOperations.getJdbcOperations().queryForList(searchQuery, Note.class);
+    }
+
+    @Override
+    public List<Note> searchByDate(Date creationDate) {
+        String searchQuery = "select id,text,creationDate,hashtags,header from note where creationDate =  '" + creationDate + "'";
         return namedParameterJdbcOperations.getJdbcOperations().queryForList(searchQuery, Note.class);
     }
 

@@ -3,6 +3,7 @@ package ru.t1.services;
 import ru.t1.domains.Note;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 public interface NoteService {
@@ -15,6 +16,8 @@ public interface NoteService {
     void deleteNoteById(long id);
 
     List<Note> searchContent(String text);
+
+    List<Note> searchByDate(Date creationDate);
 
     void saveToFile(Note note, String fileName) throws IOException;
 }
